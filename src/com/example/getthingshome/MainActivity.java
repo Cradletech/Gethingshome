@@ -11,7 +11,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listofitems);
 				//activity_main);
-		System.out.println("Hello Android   ");
 	}
 
 	@Override
