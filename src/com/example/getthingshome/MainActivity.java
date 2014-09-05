@@ -16,14 +16,17 @@ public class MainActivity extends Activity {
 		
 		TabHost th = (TabHost)findViewById(R.id.tabhost);
 		th.setup();
+		
 		TabSpec specs=th.newTabSpec("tag1");                          // linking java to tab.xml via layout references
 		specs.setContent(R.id.Cereals);
 		specs.setIndicator("Cereals");
 		th.addTab(specs);
+		
 		specs=th.newTabSpec("tag2");                         
 		specs.setContent(R.id.Beverages);
 		specs.setIndicator("Beverages");
 		th.addTab(specs);
+		
 		specs=th.newTabSpec("tag3");                          
 		specs.setContent(R.id.Pulses);
 		specs.setIndicator("Pulses");
