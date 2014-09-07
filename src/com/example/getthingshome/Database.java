@@ -41,15 +41,29 @@ public class Database {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {        // always called only after creation of database
 		// TODO Auto-generated method stub
 		
+		db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);                           //if table exists delete and create new one
+		onCreate(db);
 	}
 		   
 	   }
 
-public  Database(Context c){									// constructor of this class
+public  Database(Context c){									// constructor of this class to pass user input to the class
 	ourContext=c;
 }
+
+
+public Database open(){
+	ourHelper = new DbHelper(ourContext);
+	ourDatabase=ourHelper.getWritableDatabase();
+	return this;
+			
+}
+
+
+
+
 
 }
