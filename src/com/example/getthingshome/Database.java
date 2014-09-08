@@ -50,19 +50,30 @@ public class Database {
 		   
 	   }
 
-public  Database(Context c){									// constructor of this class to pass user input to the class
+public  Database(Context c){									// constructor of this class to pass user input to the class 
 	ourContext=c;
 }
 
 
 public Database open(){
-	ourHelper = new DbHelper(ourContext);
+	ourHelper = new DbHelper(ourContext);                           // open database 
 	ourDatabase=ourHelper.getWritableDatabase();
 	return this;
 			
 }
 
+public void close(){
+	
+	ourHelper.close();                                            // to close the database by closing the class SQLiteOpenHelper
+	
+	
+}
 
+
+public void createEntry(String name) {							// to write to db
+	// TODO Auto-generated method stub
+	
+}
 
 
 
