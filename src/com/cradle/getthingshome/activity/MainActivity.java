@@ -1,4 +1,6 @@
-package com.example.getthingshome;
+package com.cradle.getthingshome.activity;
+
+import com.example.getthingshome.R;
 
 import android.os.Bundle;
 import android.app.Activity;
