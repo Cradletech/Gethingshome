@@ -1,6 +1,8 @@
 package com.example.getthingshome;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -33,7 +35,7 @@ public class Database {
 	@Override
 	public void onCreate(SQLiteDatabase db) {                                    // called only when db is created for the first time
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE " +DATABASE_TABLE + " (" +
+		db.execSQL("CREATE TABLE " + DATABASE_TABLE + " (" +
 		          KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				  KEY_NAME + " TEXT NOT NULL, " +
 		          KEY_PRICE + " TEXT NOT NULL);"
@@ -55,9 +57,9 @@ public  Database(Context c){									// constructor of this class to pass user i
 }
 
 
-public Database open(){
+public Database open() throws SQLException{
 	ourHelper = new DbHelper(ourContext);                           // open database 
-	ourDatabase=ourHelper.getWritableDatabase();
+	ourDatabase=ourHelper.getWritableDatabase();                    // access to write to db
 	return this;
 			
 }
@@ -70,8 +72,13 @@ public void close(){
 }
 
 
-public void createEntry(String name) {							// to write to db
+public long createEntry(String name) {							// to write to db (note: we use long to return the value written to db)
 	// TODO Auto-generated method stub
+	
+	ContentValues cv=new ContentValues();
+	cv.put(KEY_NAME,name);
+	return ourDatabase.insert(DATABASE_TABLE, null, cv);          // insert into table using content values
+	
 	
 }
 
