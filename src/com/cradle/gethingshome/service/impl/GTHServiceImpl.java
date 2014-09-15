@@ -4,7 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.cradle.gethingshom.repo.impl.GTHDataRepoImpl;
+import com.cradle.gethingshome.repo.impl.GTHDataRepoImpl;
 import com.cradle.gethingshome.service.GTHService;
 
 public class GTHServiceImpl extends Service implements GTHService {
