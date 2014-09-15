@@ -2,6 +2,7 @@ package com.example.getthingshome;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -80,6 +81,30 @@ public long createEntry(String name) {							// to write to db (note: we use lon
 	return ourDatabase.insert(DATABASE_TABLE, null, cv);          // insert into table using content values
 	
 	
+}
+
+
+public String getData() {
+	// TODO Auto-generated method stub
+	
+	String[] columns=new String[]{ KEY_ROWID,KEY_NAME,KEY_PRICE};
+	Cursor c= ourDatabase.query(DATABASE_TABLE, columns, null, null, null,null, null);        // to read from db using cursor
+	String result="";
+	
+	int iRow=c.getColumnIndex(KEY_ROWID);
+	int iName=c.getColumnIndex(KEY_NAME);
+	int iPrice=c.getColumnIndex(KEY_PRICE);
+	
+	for(c.moveToFirst(); !c.isAfterLast();c.moveToNext()){
+	
+		result= result + c.getString(iRow) + " " + c.getString(iName) + " " + c.getString(iPrice) + "\n";
+		
+	}
+	
+	
+	
+	return result;
+    
 }
 
 
