@@ -2,6 +2,7 @@ package com.cradle.getthingshome.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cradle.gethingshome.repo.impl.GTHDataRepoImpl;
-import com.example.getthingshome.R;
 
 public class SQLiteActivity extends Activity implements OnClickListener {
 	private Button ad, view_cart;
@@ -27,6 +27,15 @@ public class SQLiteActivity extends Activity implements OnClickListener {
 
 		ad.setOnClickListener(this); // for the add button
 		view_cart.setOnClickListener(this); // for the view cart button
+	}
+	
+	public void renderDialog(String title, String message){
+		Dialog dialog = new Dialog(this);
+		dialog.setTitle(title);
+		TextView tv = new TextView(this);
+		tv.setText(message);
+		dialog.setContentView(tv);
+		dialog.show();
 	}
 	@Override
 	public void onClick(View arg0) {
@@ -48,24 +57,34 @@ public class SQLiteActivity extends Activity implements OnClickListener {
 			} catch (Exception e) {
 
 				didItWork = false;
+				String error =e.toString();
+				renderDialog("Warning", error);
+				/*Dialog dialog = new Dialog(this);
+				dialog.setTitle("Warning");
+				TextView tv = new TextView(this);
+				tv.setText(error);
+				dialog.setContentView(tv);
+				dialog.show();*/
 
 			} finally {
 
 				if (didItWork){
-
-					Dialog d = new Dialog(this);
+					renderDialog("Success", "item added to cart");
+					/*Dialog d = new Dialog(this);
 					d.setTitle("Success");
 					TextView tv = new TextView(this);
 					tv.setText("item added to cart");
 					d.setContentView(tv);
-					d.show();
+					d.show();*/
 
 				}
 			}
+			
 			break;
 			
 		case R.id.viewcart:
-
+			Intent i = new Intent("com.cradle.getthingshome.SQLVIEWACTIVITY");
+			startActivity(i);
 			break;
 		}
 

@@ -1,9 +1,7 @@
 package com.cradle.getthingshome.activity;
 
-import com.example.getthingshome.R;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
